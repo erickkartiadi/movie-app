@@ -24,7 +24,7 @@ function MovieDetails() {
     fetchData();
   }, []);
 
-  const { Title, Year, Released, Runtime, Genre, Plot } = movieDetails;
+  const { Title, Year } = movieDetails;
   return (
     <div>
       {isLoading ? (

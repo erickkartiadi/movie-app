@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import API from '../utils/api';
 import useInput from '../hooks/useInputState';
+import MovieList from '../components/MovieList';
 
 function MovieApp() {
   const [movies, setMovies] = useState([]);
@@ -14,11 +14,7 @@ function MovieApp() {
       params: { s: searchValue },
     });
     setIsLoading(false);
-
-    const movieResults = res.data.Search;
-    setMovies(movieResults);
-
-    console.log(res);
+    setMovies(res.data.Search);
   };
 
   const handleSubmit = (e) => {
@@ -38,23 +34,9 @@ function MovieApp() {
         />
         <button type="submit">Search</button>
       </form>
-      {movies.length <= 0 && !isLoading && <h1>Please Search</h1>}
-      {isLoading ? (
-        <h1>Loading...</h1>
-      ) : (
-        <div>
-          <ul>
-            {movies.map((movie) => (
-              <li key={movie.imdbID}>
-                <Link to={`/movies/${movie.imdbID}`}>
-                  {movie.Title}
-                  {movie.Year}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      {movies.length <= 0 && !isLoading && <h1>Empty</h1>}
+      {isLoading && <h1>Loading</h1>}
+      {movies.length > 0 && <MovieList movies={movies} />}
     </>
   );
 }
