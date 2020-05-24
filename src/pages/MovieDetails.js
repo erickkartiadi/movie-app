@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import API from '../utils/api';
+import useToggle from '../hooks/useToggleState';
 
 function MovieDetails() {
   const { imdbID } = useParams();
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, toggleIsLoading] = useToggle(true);
   const [movieDetails, setMovieDetails] = useState('');
 
   async function fetchData() {
@@ -13,7 +14,7 @@ function MovieDetails() {
         i: imdbID,
       },
     });
-    setIsLoading(false);
+    toggleIsLoading();
 
     setMovieDetails(res.data);
     console.log(res);
