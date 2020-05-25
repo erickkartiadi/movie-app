@@ -1,15 +1,16 @@
 import { Switch, Route } from 'react-router-dom';
 import React, { useState } from 'react';
 import { Container } from '@material-ui/core';
-import Movies from './Movies';
+import MovieList from './MovieList';
 import MovieDetails from './MovieDetails';
 import Navbar from '../components/Navbar';
 import API from '../utils/api';
 import useInput from '../hooks/useInputState';
 import useToggle from '../hooks/useToggleState';
+import movieSeeders from '../utils/movie_seeders';
 
 function IndexPage() {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState(movieSeeders);
   const [searchValue, handleSearchValue, resetSearchValue] = useInput('');
   const [isLoading, toggleIsLoading] = useToggle(false);
 
@@ -36,15 +37,19 @@ function IndexPage() {
         handleSearchValue={handleSearchValue}
       />
       <Container>
-        <Switch>
-          <Route exact path="/">
-            <Movies movies={movies} isLoading={isLoading} />
-          </Route>
-          <Route exact path="/movies/:imdbID">
-            <MovieDetails />
-          </Route>
-          <Route render={() => <h1>404</h1>} />
-        </Switch>
+        {isLoading ? (
+          <h1>Loading</h1>
+        ) : (
+          <Switch>
+            <Route exact path="/">
+              <MovieList movies={movies} />
+            </Route>
+            <Route exact path="/movies/:imdbID">
+              <MovieDetails />
+            </Route>
+            <Route render={() => <h1>404</h1>} />
+          </Switch>
+        )}
       </Container>
     </>
   );

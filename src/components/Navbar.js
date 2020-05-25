@@ -11,6 +11,7 @@ import SearchIcon from '@material-ui/icons/Search';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    marginBottom: theme.spacing(5),
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -62,6 +63,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
+
 function Navbar(props) {
   const classes = useStyles();
   const { handleSubmit, searchValue, handleSearchValue } = props;
@@ -69,7 +71,7 @@ function Navbar(props) {
     <div className={classes.root}>
       <AppBar position="static">
         <Container>
-          <Toolbar>
+          <Toolbar disableGutters>
             <Typography className={classes.title} variant="h6" noWrap>
               Material-UI
             </Typography>
