@@ -1,9 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import useInput from '../hooks/useInputState';
-import useToggle from '../hooks/useToggleState';
 import MovieList from '../components/MovieList';
-import API from '../utils/api';
 
 function MovieApp(props) {
   const { movies, isLoading } = props;

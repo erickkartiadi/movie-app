@@ -1,12 +1,10 @@
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import { Container } from '@material-ui/core';
 import { fade, makeStyles } from '@material-ui/core/styles';
-import MenuIcon from '@material-ui/icons/Menu';
 import PropTypes from 'prop-types';
 import SearchIcon from '@material-ui/icons/Search';
 
@@ -80,23 +78,18 @@ function Navbar(props) {
                 <SearchIcon />
               </div>
               <form onSubmit={handleSubmit}>
-                <input
+                <InputBase
+                  inputProps={{ 'aria-label': 'search' }}
+                  classes={{
+                    root: classes.inputRoot,
+                    input: classes.inputInput,
+                  }}
+                  placeholder="Search…"
                   type="text"
-                  name="search"
-                  id="search"
                   value={searchValue}
                   onChange={handleSearchValue}
                 />
-                <button type="submit">Search</button>
               </form>
-              {/* <InputBase
-                placeholder="Search…"
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-                inputProps={{ 'aria-label': 'search' }}
-              /> */}
             </div>
           </Toolbar>
         </Container>
