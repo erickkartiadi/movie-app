@@ -1,12 +1,12 @@
-import { Switch, Route } from 'react-router-dom';
 import React, { useState } from 'react';
+import { Switch, Route } from 'react-router-dom';
 import { Container } from '@material-ui/core';
 import MovieList from './MovieList';
 import MovieDetails from './MovieDetails';
 import Navbar from '../components/Navbar';
-import API from '../utils/api';
 import useInput from '../hooks/useInputState';
 import useToggle from '../hooks/useToggleState';
+import API from '../utils/api';
 import movieSeeders from '../utils/movie_seeders';
 
 function IndexPage() {

@@ -1,16 +1,15 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import { CardMedia } from '@material-ui/core';
+import {
+  Card,
+  Typography,
+  CardMedia,
+  CardActionArea,
+  Grid,
+  Chip,
+} from '@material-ui/core';
+
 import PropTypes from 'prop-types';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
-import Chip from '@material-ui/core/Chip';
 import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
@@ -43,7 +42,10 @@ function MovieCard(props) {
           <CardMedia className={classes.media} image={poster} />
         </CardActionArea>
       </Card>
-      <Typography variant="h6">{title}</Typography>
+      <Typography variant="h6">
+        {title}
+        <Typography variant="subtitle2">{year}</Typography>
+      </Typography>
       <Chip className={classes.chip} label={type} />
     </Grid>
   );
