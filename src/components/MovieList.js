@@ -5,18 +5,16 @@ import { Link } from 'react-router-dom';
 function MovieList(props) {
   const { movies } = props;
   return (
-    <div>
-      <ul>
-        {movies.map((movie) => (
-          <li key={movie.imdbID}>
-            <Link to={`/movies/${movie.imdbID}`}>
-              {movie.Title}
-              {movie.Year}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ul>
+      {movies.map((movie) => (
+        <li key={movie.imdbID}>
+          <Link to={`/movies/${movie.imdbID}`}>
+            {movie.Title}
+            {movie.Year}
+          </Link>
+        </li>
+      ))}
+    </ul>
   );
 }
 

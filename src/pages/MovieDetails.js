@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Container } from '@material-ui/core';
 import API from '../utils/api';
 import useToggle from '../hooks/useToggleState';
 
@@ -21,13 +22,12 @@ function MovieDetails() {
   }
 
   useEffect(() => {
-    console.log('run');
     fetchData();
   }, []);
 
   const { Title, Year } = movieDetails;
   return (
-    <div>
+    <Container maxWidth="sm">
       {isLoading ? (
         <Spinner />
       ) : (
@@ -39,7 +39,7 @@ function MovieDetails() {
           </h2>
         </>
       )}
-    </div>
+    </Container>
   );
 }
 
