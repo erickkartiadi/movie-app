@@ -26,22 +26,16 @@ import {
   TableRow,
   TableContainer,
 } from '@material-ui/core';
-import Rating from '@material-ui/lab/Rating';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
+import Rating from '../components/Rating';
 import useToggle from '../hooks/useToggleState';
 import API from '../utils/api';
 import detailSeeder from '../utils/movie_detail_seeder';
 import NoBorderCell from '../components/NoBorderCell';
+import MovieDetailTable from '../components/MovieDetailTable';
 import CardImage from '../components/CardImage';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    maxWidth: 345,
-    marginBottom: theme.spacing(2),
-  },
-  media: {
-    height: 444,
-  },
   title: {
     fontFamily: 'Raleway',
     fontWeight: 'bold',
@@ -127,49 +121,16 @@ function MovieDetails() {
           {Genre}
         </Typography>
 
-        <TableContainer>
-          <Table>
-            <TableBody>
-              <TableRow>
-                <NoBorderCell>Rating</NoBorderCell>
-                <NoBorderCell>{Rated}</NoBorderCell>
-              </TableRow>
-              <TableRow>
-                <NoBorderCell>Directed By</NoBorderCell>
-                <NoBorderCell>{Director}</NoBorderCell>
-              </TableRow>
-              <TableRow>
-                <NoBorderCell>Written By</NoBorderCell>
-                <NoBorderCell>{Writer}</NoBorderCell>
-              </TableRow>
-              <TableRow>
-                <NoBorderCell>Release Date</NoBorderCell>
-                <NoBorderCell>
-                  {Released}
-                  in
-                  {Country}
-                </NoBorderCell>
-              </TableRow>
-              <TableRow>
-                <NoBorderCell>Language</NoBorderCell>
-                <NoBorderCell>{Language}</NoBorderCell>
-              </TableRow>
-              <TableRow>
-                <NoBorderCell>Awards</NoBorderCell>
-                <NoBorderCell>{Awards}</NoBorderCell>
-              </TableRow>
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <div className={classes.rating}>
-          <Rating
-            name="read-only"
-            value={imdbRating / 2}
-            precision={0.1}
-            readOnly
-          />
-          <Typography variant="subtitle1">{imdbRating}</Typography>
-        </div>
+        <MovieDetailTable
+          rated={Rated}
+          director={Director}
+          writer={Writer}
+          released={Released}
+          country={Country}
+          language={Language}
+          awards={Awards}
+        />
+        <Rating value={imdbRating} precision={0.2} />
       </Grid>
     </Grid>
   );

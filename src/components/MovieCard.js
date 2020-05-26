@@ -11,26 +11,12 @@
 
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {
-  Card,
-  Typography,
-  CardMedia,
-  CardActionArea,
-  Grid,
-  Chip,
-} from '@material-ui/core';
+import { Typography, Grid, Chip } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import CardImage from './CardImage';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    maxWidth: 345,
-    marginBottom: theme.spacing(2),
-  },
-  media: {
-    height: 444,
-  },
   chip: {
     marginTop: theme.spacing(1),
     textTransform: 'uppercase',

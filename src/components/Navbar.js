@@ -9,6 +9,7 @@ import {
 } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import SearchIcon from '@material-ui/icons/Search';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,6 +21,10 @@ const useStyles = makeStyles((theme) => ({
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
+    },
+    '&>a': {
+      textDecoration: 'none',
+      color: 'white',
     },
   },
   search: {
@@ -71,7 +76,7 @@ function Navbar(props) {
         <Container>
           <Toolbar disableGutters>
             <Typography className={classes.title} variant="h6" noWrap>
-              Material-UI
+              <Link to="/">The Movie News</Link>
             </Typography>
             <div className={classes.search}>
               <div className={classes.searchIcon}>

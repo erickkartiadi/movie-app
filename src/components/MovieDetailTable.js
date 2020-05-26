@@ -3,6 +3,7 @@ import { Table, TableBody, TableRow, TableContainer } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import NoBorderCell from './NoBorderCell';
 
+// TODO: Add Styling
 function MovieDetailTable({
   rated,
   director,
