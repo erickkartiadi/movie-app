@@ -1,3 +1,14 @@
+/**
+ * TODO: Reduce card border radius
+ * TODO: Reduce chip border radius
+ * TODO: Add rating
+ * TODO: Add genre
+ * TODO: Add time
+ * * Styling
+ * TODO: Hover card effect
+ * TODO: Trailer, pass down the trailer link to movie detail
+ */
+
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -10,7 +21,7 @@ import {
 } from '@material-ui/core';
 
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,25 +38,20 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function MovieCard(props) {
-  const classes = useStyles();
-  const history = useHistory();
   const { title, year, imdbId, type, poster } = props;
 
-  const handleNavigate = () => {
-    history.push(`/movies/${imdbId}`);
-  };
-
+  const classes = useStyles();
   return (
     <Grid item xs={12}>
       <Card className={classes.root}>
-        <CardActionArea onClick={handleNavigate}>
-          <CardMedia className={classes.media} image={poster} />
-        </CardActionArea>
+        <Link to={`/movies/${imdbId}`}>
+          <CardActionArea>
+            <CardMedia className={classes.media} image={poster} />
+          </CardActionArea>
+        </Link>
       </Card>
-      <Typography variant="h6">
-        {title}
-        <Typography variant="subtitle2">{year}</Typography>
-      </Typography>
+      <Typography variant="h6">{title}</Typography>
+      <Typography variant="subtitle2">{year}</Typography>
       <Chip className={classes.chip} label={type} />
     </Grid>
   );
