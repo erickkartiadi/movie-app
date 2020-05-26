@@ -12,26 +12,12 @@
 
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import {
-  Card,
-  Typography,
-  CardMedia,
-  CardActionArea,
-  Grid,
-  Chip,
-  Box,
-  Table,
-  TableBody,
-  TableCell,
-  TableRow,
-  TableContainer,
-} from '@material-ui/core';
+import { Typography, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Rating from '../components/Rating';
 import useToggle from '../hooks/useToggleState';
 import API from '../utils/api';
-import detailSeeder from '../utils/movie_detail_seeder';
-import NoBorderCell from '../components/NoBorderCell';
+// import detailSeeder from '../utils/movie_detail_seeder';
 import MovieDetailTable from '../components/MovieDetailTable';
 import CardImage from '../components/CardImage';
 
@@ -63,25 +49,23 @@ const useStyles = makeStyles((theme) => ({
 function MovieDetails() {
   const { imdbID } = useParams();
   const [isLoading, toggleIsLoading] = useToggle(false);
-  const [movieDetails, setMovieDetails] = useState(detailSeeder);
+  const [movieDetails, setMovieDetails] = useState([]);
 
-  // #region Actual Logic
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     const res = await API.get('/', {
-  //       params: {
-  //         i: imdbID,
-  //       },
-  //     });
-  //     toggleIsLoading();
+  useEffect(() => {
+    async function fetchData() {
+      const res = await API.get('/', {
+        params: {
+          i: imdbID,
+        },
+      });
+      toggleIsLoading();
 
-  //     setMovieDetails(res.data);
-  //     console.log(res);
-  //   }
-  //   fetchData();
-  //   console.log('run');
-  // }, []);
-  // #endregion
+      setMovieDetails(res.data);
+      console.log(res);
+    }
+    fetchData();
+    console.log('run');
+  }, []);
 
   const {
     Title,
@@ -134,10 +118,6 @@ function MovieDetails() {
       </Grid>
     </Grid>
   );
-}
-
-function Spinner() {
-  return <h1>Loading...</h1>;
 }
 
 export default MovieDetails;
