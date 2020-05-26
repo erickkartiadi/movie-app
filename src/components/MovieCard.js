@@ -19,9 +19,9 @@ import {
   Grid,
   Chip,
 } from '@material-ui/core';
-
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import CardImage from './CardImage';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,13 +43,9 @@ function MovieCard(props) {
   const classes = useStyles();
   return (
     <Grid item xs={12}>
-      <Card className={classes.root}>
-        <Link to={`/movies/${imdbId}`}>
-          <CardActionArea>
-            <CardMedia className={classes.media} image={poster} />
-          </CardActionArea>
-        </Link>
-      </Card>
+      <Link to={`/movies/${imdbId}`}>
+        <CardImage image={poster} />
+      </Link>
       <Typography variant="h6">{title}</Typography>
       <Typography variant="subtitle2">{year}</Typography>
       <Chip className={classes.chip} label={type} />

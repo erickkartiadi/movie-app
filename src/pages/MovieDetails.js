@@ -32,6 +32,7 @@ import useToggle from '../hooks/useToggleState';
 import API from '../utils/api';
 import detailSeeder from '../utils/movie_detail_seeder';
 import NoBorderCell from '../components/NoBorderCell';
+import CardImage from '../components/CardImage';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -114,11 +115,7 @@ function MovieDetails() {
   return (
     <Grid container spacing={4}>
       <Grid item xs={3}>
-        <Card className={classes.root}>
-          <CardActionArea>
-            <CardMedia className={classes.media} image={Poster} />
-          </CardActionArea>
-        </Card>
+        <CardImage image={Poster} />
       </Grid>
       <Grid item xs={9}>
         <Typography variant="h2" className={classes.title}>
