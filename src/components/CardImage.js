@@ -26,8 +26,13 @@ function CardImage({ image, children }) {
   );
 }
 
+CardImage.defaultProps = {
+  children: null,
+};
+
 CardImage.propTypes = {
   image: PropTypes.string.isRequired,
+  children: PropTypes.node,
 };
 
 export default CardImage;
