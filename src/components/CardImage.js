@@ -14,13 +14,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function CardImage({ image }) {
+function CardImage({ image, children }) {
   const classes = useStyles();
   return (
     <Card className={classes.root}>
       <CardActionArea>
         <CardMedia className={classes.media} image={image} />
       </CardActionArea>
+      {children}
     </Card>
   );
 }
