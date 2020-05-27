@@ -6,12 +6,16 @@ import MuiRating from '@material-ui/lab/Rating';
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    marginTop: theme.spacing(1),
     display: 'flex',
     '& h6': {
-      color: '#ffb400',
-      fontWeight: '599',
-      marginLeft: theme.spacing(1),
+      color: 'slateblue',
+      fontWeight: '500',
+      fontSize: '1.2rem',
+      marginLeft: theme.spacing(2),
     },
+    position: 'relative',
+    right: 2,
   },
 }));
 
@@ -20,6 +24,7 @@ function Rating({ value, precision }) {
   return (
     <div className={classes.root}>
       <MuiRating
+        size="large"
         name="read-only"
         value={parseFloat(value) / 2}
         precision={precision}
