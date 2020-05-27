@@ -12,20 +12,24 @@
 
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Grid, CardActions, Button, Divider } from '@material-ui/core';
+import { Grid, CardActions, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import useToggle from '../hooks/useToggleState';
 import API from '../utils/api';
-// import detailSeeder from '../utils/movie_detail_seeder';
+import detailSeeder from '../utils/movie_detail_seeder';
 import CardImage from '../components/CardImage';
 import MovieSummary from '../components/MovieSummary';
 import RatingScore from '../components/RatingScore';
+import CastAvatar from '../components/CastAvatar';
 
 const useStyles = makeStyles((theme) => ({
   trailer: {
     display: 'flex',
     justifyContent: 'center',
+  },
+  rowHead: {
+    fontFamily: 'Raleway',
   },
 }));
 
@@ -70,7 +74,7 @@ function MovieDetails() {
 
   const classes = useStyles();
   return !isLoading ? (
-    <Grid container direction="column">
+    <Grid container direction="column" spacing={6}>
       <Grid item container spacing={4}>
         <Grid item xs={3}>
           <CardImage image={Poster}>
@@ -105,18 +109,31 @@ function MovieDetails() {
           />
         </Grid>
       </Grid>
-      <Divider />
+
       <Grid item container>
         <Grid item xs={3}>
-          <h2>Plot</h2>
+          <h3 className={classes.rowHead}>Plot</h3>
         </Grid>
         <Grid item xs={9}>
           <p>{Plot}</p>
         </Grid>
       </Grid>
-      <Divider />
+
       <Grid item container>
-        <RatingScore ratings={Ratings} />
+        <Grid item xs={3}>
+          <h3 className={classes.rowHead}>Ratings</h3>
+        </Grid>
+        <Grid container item xs={9} spacing={2}>
+          <RatingScore ratings={Ratings} />
+        </Grid>
+      </Grid>
+      <Grid item container>
+        <Grid item xs={3}>
+          <h3 className={classes.rowHead}>Cast</h3>
+        </Grid>
+        <Grid item xs={9} container direction="row" justify="flex-start">
+          <CastAvatar actors={Actors} />
+        </Grid>
       </Grid>
     </Grid>
   ) : (
