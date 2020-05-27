@@ -29,6 +29,7 @@ function IndexPage() {
     resetSearchValue();
   };
 
+  // TODO: Add Loading Condition
   return (
     <>
       <Navbar
