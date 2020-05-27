@@ -5,6 +5,8 @@ import NoBorderCell from './NoBorderCell';
 
 // TODO: Add Styling
 function MovieDetailTable({
+  genre,
+  runtime,
   rated,
   director,
   writer,
@@ -22,12 +24,12 @@ function MovieDetailTable({
             <NoBorderCell>{rated}</NoBorderCell>
           </TableRow>
           <TableRow>
-            <NoBorderCell>Directed By</NoBorderCell>
-            <NoBorderCell>{director}</NoBorderCell>
+            <NoBorderCell>Genre</NoBorderCell>
+            <NoBorderCell>{genre}</NoBorderCell>
           </TableRow>
           <TableRow>
-            <NoBorderCell>Written By</NoBorderCell>
-            <NoBorderCell>{writer}</NoBorderCell>
+            <NoBorderCell>Directed By</NoBorderCell>
+            <NoBorderCell>{director}</NoBorderCell>
           </TableRow>
           <TableRow>
             <NoBorderCell>Release Date</NoBorderCell>
@@ -38,12 +40,20 @@ function MovieDetailTable({
             </NoBorderCell>
           </TableRow>
           <TableRow>
+            <NoBorderCell>Runtime</NoBorderCell>
+            <NoBorderCell>{runtime}</NoBorderCell>
+          </TableRow>
+          <TableRow>
             <NoBorderCell>Language</NoBorderCell>
             <NoBorderCell>{language}</NoBorderCell>
           </TableRow>
           <TableRow>
             <NoBorderCell>Awards</NoBorderCell>
             <NoBorderCell>{awards}</NoBorderCell>
+          </TableRow>
+          <TableRow>
+            <NoBorderCell>Written By</NoBorderCell>
+            <NoBorderCell>{writer}</NoBorderCell>
           </TableRow>
         </TableBody>
       </Table>
@@ -55,6 +65,8 @@ export default MovieDetailTable;
 MovieDetailTable.propTypes = {
   rated: PropTypes.string.isRequired,
   director: PropTypes.string.isRequired,
+  genre: PropTypes.string.isRequired,
+  runtime: PropTypes.string.isRequired,
   writer: PropTypes.string.isRequired,
   released: PropTypes.string.isRequired,
   country: PropTypes.string.isRequired,
