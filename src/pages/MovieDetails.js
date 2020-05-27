@@ -12,40 +12,17 @@
 
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Typography, Grid, CardActions, Button } from '@material-ui/core';
+import { Grid, CardActions, Button, Divider } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
-import Rating from '../components/Rating';
 import useToggle from '../hooks/useToggleState';
 import API from '../utils/api';
-import detailSeeder from '../utils/movie_detail_seeder';
-import MovieDetailTable from '../components/MovieDetailTable';
+// import detailSeeder from '../utils/movie_detail_seeder';
 import CardImage from '../components/CardImage';
-import Chips from '../components/Chips';
+import MovieSummary from '../components/MovieSummary';
+import RatingScore from '../components/RatingScore';
 
 const useStyles = makeStyles((theme) => ({
-  title: {
-    fontFamily: 'Raleway',
-    fontWeight: 'bold',
-  },
-  year: {
-    color: 'grey',
-    fontSize: '1rem',
-    fontFamily: 'Roboto',
-    fontWeight: '400',
-  },
-  genres: {
-    marginTop: theme.spacing(1),
-    fontWeight: '500',
-  },
-  rating: {
-    display: 'flex',
-    '& h6': {
-      color: '#ffb400',
-      fontWeight: '599',
-      marginLeft: theme.spacing(1),
-    },
-  },
   trailer: {
     display: 'flex',
     justifyContent: 'center',
@@ -54,24 +31,23 @@ const useStyles = makeStyles((theme) => ({
 
 function MovieDetails() {
   const { imdbID } = useParams();
-  const [isLoading, toggleIsLoading] = useToggle(false);
-  const [movieDetails, setMovieDetails] = useState(detailSeeder);
+  const [isLoading, toggleIsLoading] = useToggle(true);
+  const [movieDetails, setMovieDetails] = useState([]);
+  async function fetchData() {
+    const res = await API.get('/', {
+      params: {
+        i: imdbID,
+      },
+    });
 
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     const res = await API.get('/', {
-  //       params: {
-  //         i: imdbID,
-  //       },
-  //     });
-  //     toggleIsLoading();
+    setMovieDetails(res.data);
+    toggleIsLoading();
+    console.log(res);
+  }
 
-  //     setMovieDetails(res.data);
-  //     console.log(res);
-  //   }
-  //   fetchData();
-  //   console.log('run');
-  // }, []);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const {
     Title,
@@ -89,50 +65,62 @@ function MovieDetails() {
     Awards,
     Poster,
     Ratings,
-    Metascore,
     imdbRating,
-    imdbVotes,
-    Type,
   } = movieDetails;
 
   const classes = useStyles();
-  return (
-    <Grid container spacing={4}>
-      <Grid item xs={3}>
-        <CardImage image={Poster}>
-          <CardActions className={classes.trailer}>
-            <Button
-              size="small"
-              color="primary"
-              startIcon={<PlayCircleFilledIcon />}
-            >
-              Go To Trailer
-            </Button>
-          </CardActions>
-        </CardImage>
+  return !isLoading ? (
+    <Grid container direction="column">
+      <Grid item container spacing={4}>
+        <Grid item xs={3}>
+          <CardImage image={Poster}>
+            <CardActions className={classes.trailer}>
+              <Button
+                component="a"
+                href="https://facebook.com"
+                target="_blank"
+                size="small"
+                color="primary"
+                startIcon={<PlayCircleFilledIcon />}
+              >
+                Go To Trailer
+              </Button>
+            </CardActions>
+          </CardImage>
+        </Grid>
+        <Grid item xs={9}>
+          <MovieSummary
+            title={Title}
+            year={Year}
+            imdbRating={imdbRating}
+            runtime={Runtime}
+            released={Released}
+            genre={Genre}
+            rated={Rated}
+            director={Director}
+            writer={Writer}
+            country={Country}
+            language={Language}
+            awards={Awards}
+          />
+        </Grid>
       </Grid>
-
-      <Grid item xs={9}>
-        <Typography variant="h2" className={classes.title}>
-          {Title}
-          {'   '}
-          <span className={classes.year}>{`(${Year})`}</span>
-        </Typography>
-        <Rating value={imdbRating} precision={0.2} />
-        <Chips runtime={Runtime} released={Released} genre={Genre} />
-        <MovieDetailTable
-          genre={Genre}
-          runtime={Runtime}
-          rated={Rated}
-          director={Director}
-          writer={Writer}
-          released={Released}
-          country={Country}
-          language={Language}
-          awards={Awards}
-        />
+      <Divider />
+      <Grid item container>
+        <Grid item xs={3}>
+          <h2>Plot</h2>
+        </Grid>
+        <Grid item xs={9}>
+          <p>{Plot}</p>
+        </Grid>
+      </Grid>
+      <Divider />
+      <Grid item container>
+        <RatingScore ratings={Ratings} />
       </Grid>
     </Grid>
+  ) : (
+    <h1>Loading</h1>
   );
 }
 

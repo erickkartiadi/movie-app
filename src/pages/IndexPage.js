@@ -30,6 +30,8 @@ function IndexPage() {
   };
 
   // TODO: Add Loading Condition
+  // TODO: handle back to index page
+  // TODO: search while on movie details
   return (
     <>
       <Navbar
