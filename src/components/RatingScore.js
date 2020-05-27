@@ -7,10 +7,10 @@ function RatingScore({ ratings }) {
   return (
     <>
       <Grid item xs={3}>
-        <h1>Ratings</h1>
+        <h2>Ratings</h2>
       </Grid>
-      <Grid container item xs={9}>
-        {ratings.map((rating, idx) => {
+      <Grid container item xs={9} spacing={2}>
+        {ratings.map((rating) => {
           return (
             <CircleRatingSVG
               value={rating.Value}
