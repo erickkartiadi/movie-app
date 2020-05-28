@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
 import IndexPage from './pages/IndexPage';
 import CUSTOM_THEME from './styles/Theme';
 

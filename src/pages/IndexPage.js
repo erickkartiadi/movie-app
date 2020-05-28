@@ -4,6 +4,7 @@ import { Container } from '@material-ui/core';
 import MovieList from './MovieList';
 import MovieDetails from './MovieDetails';
 import Navbar from '../components/shared/Navbar';
+import Footer from '../components/shared/Footer';
 import useInput from '../hooks/useInputState';
 import useToggle from '../hooks/useToggleState';
 import API from '../utils/api';
@@ -54,6 +55,7 @@ function IndexPage() {
           </Switch>
         )}
       </Container>
+      <Footer />
     </>
   );
 }
