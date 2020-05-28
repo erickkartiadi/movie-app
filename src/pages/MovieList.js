@@ -1,8 +1,6 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import PropTypes from 'prop-types';
-import InfiniteScroll from 'react-infinite-scroller';
-import { v4 as uuidv4 } from 'uuid';
 import MovieCard from '../components/segments/list_page/MovieCard';
 import API from '../utils/api';
 import useToggle from '../hooks/useToggleState';
