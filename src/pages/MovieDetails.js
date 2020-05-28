@@ -19,9 +19,9 @@ import useToggle from '../hooks/useToggleState';
 import API from '../utils/api';
 import detailSeeder from '../utils/movie_detail_seeder';
 import CardImage from '../components/CardImage';
-import MovieSummary from '../components/MovieSummary';
-import RatingScore from '../components/RatingScore';
-import CastAvatar from '../components/CastAvatar';
+import MovieSummary from '../components/segments/detail_page/MovieSummary';
+import RatingScore from '../components/segments/detail_page/RatingScore';
+import CastAvatar from '../components/segments/detail_page/CastAvatar';
 
 const useStyles = makeStyles((theme) => ({
   trailer: {
@@ -35,23 +35,23 @@ const useStyles = makeStyles((theme) => ({
 
 function MovieDetails() {
   const { imdbID } = useParams();
-  const [isLoading, toggleIsLoading] = useToggle(true);
-  const [movieDetails, setMovieDetails] = useState([]);
-  async function fetchData() {
-    const res = await API.get('/', {
-      params: {
-        i: imdbID,
-      },
-    });
+  const [isLoading, toggleIsLoading] = useToggle(false);
+  const [movieDetails, setMovieDetails] = useState(detailSeeder);
+  // async function fetchData() {
+  //   const res = await API.get('/', {
+  //     params: {
+  //       i: imdbID,
+  //     },
+  //   });
 
-    setMovieDetails(res.data);
-    toggleIsLoading();
-    console.log(res);
-  }
+  //   setMovieDetails(res.data);
+  //   toggleIsLoading();
+  //   console.log(res);
+  // }
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
   const {
     Title,

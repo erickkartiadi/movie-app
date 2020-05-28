@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import { Container } from '@material-ui/core';
 import MovieList from './MovieList';
 import MovieDetails from './MovieDetails';
-import Navbar from '../components/Navbar';
+import Navbar from '../components/shared/Navbar';
 import useInput from '../hooks/useInputState';
 import useToggle from '../hooks/useToggleState';
 import API from '../utils/api';

@@ -3,14 +3,13 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import MovieDetailTable from './MovieDetailTable';
-import StarRating from './StarRating';
+import StarRating from '../../StarRating';
 
-import Chips from './Chips';
+import Chips from '../../Chips';
 
 const useStyles = makeStyles((theme) => ({
   title: {
-    fontFamily: 'Raleway',
-    fontWeight: 'bold',
+    ...theme.typography.title,
   },
   year: {
     color: 'grey',

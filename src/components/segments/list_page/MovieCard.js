@@ -11,15 +11,29 @@
 
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Grid, Chip } from '@material-ui/core';
+import { Typography, Grid, Chip, Divider } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import CardImage from './CardImage';
+import CardImage from '../../CardImage';
 
 const useStyles = makeStyles((theme) => ({
   chip: {
     marginTop: theme.spacing(1),
     textTransform: 'uppercase',
+  },
+  title: {
+    ...theme.typography.title,
+  },
+  year: {
+    color: 'grey',
+    fontSize: '1rem',
+    fontFamily: 'Roboto',
+    fontWeight: '400',
+    marginLeft: theme.spacing(1),
+  },
+  genres: {
+    color: 'grey',
+    fontWeight: '300',
   },
 }));
 
@@ -32,9 +46,10 @@ function MovieCard(props) {
       <Link to={`/movies/${imdbId}`}>
         <CardImage image={poster} />
       </Link>
-      <Typography variant="h6">{title}</Typography>
-      <Typography variant="subtitle2">{year}</Typography>
-      <Chip className={classes.chip} label={type} />
+      <Typography variant="h6" className={classes.title}>
+        {title}
+        <span className={classes.year}>{`(${year})`}</span>
+      </Typography>
     </Grid>
   );
 }

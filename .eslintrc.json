@@ -23,6 +23,7 @@
   },
   "plugins": ["react", "react-hooks", "prettier"],
   "rules": {
+    "react/jsx-props-no-spreading": "off",
     "no-unused-vars": "warn",
     "no-console": "off",
     "react/forbid-prop-types": "off",

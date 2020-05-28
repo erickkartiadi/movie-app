@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Grid } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import calcRating from '../utils/ratingCalculator';
+import calcRating from '../../../utils/ratingCalculator';
 
 const useStyles = makeStyles((theme) => ({
   theCanvas: {

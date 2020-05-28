@@ -1,7 +1,7 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import PropTypes from 'prop-types';
-import MovieCard from '../components/MovieCard';
+import MovieCard from '../components/segments/list_page/MovieCard';
 
 function MovieList(props) {
   const { movies } = props;
