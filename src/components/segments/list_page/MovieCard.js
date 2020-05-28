@@ -42,14 +42,16 @@ function MovieCard(props) {
 
   const classes = useStyles();
   return (
-    <Grid item xs={12}>
-      <Link to={`/movies/${imdbId}`}>
-        <CardImage image={poster} />
-      </Link>
-      <Typography variant="h6" className={classes.title}>
-        {title}
-        <span className={classes.year}>{`(${year})`}</span>
-      </Typography>
+    <Grid container item xs={3}>
+      <Grid item xs={12}>
+        <Link to={`/movies/${imdbId}`}>
+          <CardImage image={poster} />
+        </Link>
+        <Typography variant="h6" className={classes.title}>
+          {title}
+          <span className={classes.year}>{`(${year})`}</span>
+        </Typography>
+      </Grid>
     </Grid>
   );
 }

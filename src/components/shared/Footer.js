@@ -18,7 +18,6 @@ const useStyles = makeStyles((theme) => ({
   appBar: {
     top: 'auto',
     bottom: 0,
-    marginTop: theme.spacing(2),
   },
 }));
 

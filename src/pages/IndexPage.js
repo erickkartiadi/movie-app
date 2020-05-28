@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useReducer, useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { Container } from '@material-ui/core';
 import MovieList from './MovieList';
@@ -10,8 +10,15 @@ import useToggle from '../hooks/useToggleState';
 import API from '../utils/api';
 import movieSeeders from '../utils/movie_seeders';
 
+// TODO: search filter
+// TODO: Add Loading Condition
+// TODO: handle back to index page
+// TODO: search while on movie details
+// TODO: navigate to top button
+
 function IndexPage() {
   const [movies, setMovies] = useState(movieSeeders);
+
   const [searchValue, handleSearchValue, resetSearchValue] = useInput('');
   const [isLoading, toggleIsLoading] = useToggle(false);
 
@@ -29,10 +36,10 @@ function IndexPage() {
     handleSearch();
     resetSearchValue();
   };
-  // TODO: search filter
-  // TODO: Add Loading Condition
-  // TODO: handle back to index page
-  // TODO: search while on movie details
+
+  const loadMoreMovies = (newMovies) => {
+    setMovies((prev) => [...prev, ...newMovies]);
+  };
   return (
     <>
       <Navbar
@@ -46,7 +53,7 @@ function IndexPage() {
         ) : (
           <Switch>
             <Route exact path="/">
-              <MovieList movies={movies} />
+              <MovieList movies={movies} loadMoreMovies={loadMoreMovies} />
             </Route>
             <Route exact path="/movies/:imdbID">
               <MovieDetails />
