@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Grid, Chip, Divider } from '@material-ui/core';
+import { Typography, Grid } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import CardImage from '../../CardImage';
@@ -16,15 +16,11 @@ const useStyles = makeStyles((theme) => ({
     ...theme.typography.title,
   },
   year: {
-    color: 'grey',
+    color: theme.palette.primary.dark,
     fontSize: '1rem',
     fontFamily: 'Roboto',
     fontWeight: '400',
     marginLeft: theme.spacing(1),
-  },
-  genres: {
-    color: 'grey',
-    fontWeight: '300',
   },
 }));
 

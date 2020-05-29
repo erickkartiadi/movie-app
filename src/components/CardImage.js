@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardMedia, CardActionArea, Chip } from '@material-ui/core';
+import { Card, CardMedia, CardActionArea } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 
@@ -17,7 +17,7 @@ function CardImage({ image, children }) {
   const classes = useStyles();
   return (
     <Card className={classes.root}>
-      <CardActionArea>
+      <CardActionArea aria-label="Movie Detail">
         <CardMedia className={classes.media} image={image} />
       </CardActionArea>
       {children}

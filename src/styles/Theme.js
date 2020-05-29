@@ -1,5 +1,4 @@
 import { createMuiTheme } from '@material-ui/core/styles';
-import { grey, red } from '@material-ui/core/colors';
 
 const CUSTOM_THEME = createMuiTheme({
   palette: {
@@ -10,7 +9,7 @@ const CUSTOM_THEME = createMuiTheme({
     },
     secondary: {
       light: '#6ab7ff',
-      main: '#1e88e5',
+      main: '#01579b',
       dark: '#005cb2',
     },
   },

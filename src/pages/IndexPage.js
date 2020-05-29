@@ -1,4 +1,4 @@
-import React, { useReducer, useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { Switch, Route, useHistory } from 'react-router-dom';
 import { Container } from '@material-ui/core';
 import MovieList from './MovieList';
@@ -15,7 +15,7 @@ import { scrollTop } from '../utils/scroller';
 import IndexPagination from '../components/IndexPagination';
 
 function IndexPage() {
-  const [movies, setMovies] = useState(movieSeeders);
+  const [movies, setMovies] = useState();
   const [
     searchInputValue,
     handleSearchInputValue,
@@ -24,7 +24,6 @@ function IndexPage() {
   const [isLoading, toggleIsLoading] = useToggle(false);
   const [searchText, setSearchText] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
-  const [isError, setError] = useState(false);
   const [errorText, setErrorText] = useState('');
   const history = useHistory();
 
@@ -43,7 +42,6 @@ function IndexPage() {
       scrollTop();
     } else {
       const { Error } = res.data;
-      setError(true);
       setErrorText(Error);
       history.push('/err');
     }
@@ -54,6 +52,7 @@ function IndexPage() {
     handleSearch(searchInputValue, 1);
     setSearchText(searchInputValue);
     resetSearchInputValue();
+    history.push('/');
   };
 
   const handlePageChange = (event, value) => {

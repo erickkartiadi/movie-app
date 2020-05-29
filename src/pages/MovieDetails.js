@@ -26,20 +26,20 @@ function MovieDetails() {
   const { imdbID } = useParams();
   const [isLoading, toggleIsLoading] = useToggle(false);
   const [movieDetails, setMovieDetails] = useState(detailSeeder);
-  // async function fetchData() {
-  //   const res = await API.get('/', {
-  //     params: {
-  //       i: imdbID,
-  //     },
-  //   });
+  async function fetchData() {
+    const res = await API.get('/', {
+      params: {
+        i: imdbID,
+      },
+    });
 
-  //   setMovieDetails(res.data);
-  //   toggleIsLoading();
-  // }
+    setMovieDetails(res.data);
+    toggleIsLoading();
+  }
 
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const {
     Title,

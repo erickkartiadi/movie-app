@@ -38,7 +38,7 @@ function ErrorPage({ text }) {
       <Typography className={classes.text} variant="subtitle1">
         {text}
       </Typography>
-      <Button variant="contained" onClick={goBack}>
+      <Button variant="contained" color="primary" onClick={goBack}>
         GO TO HOMEPAGE
       </Button>
     </div>
