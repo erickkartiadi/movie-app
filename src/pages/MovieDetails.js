@@ -1,15 +1,3 @@
-/**
- * TODO: Genres
- * TODO: Navigate to trailer
- * TODO: Score
- * TODO: Cast
- * TODO: Summary
- * TODO: release date
- * TODO: Loading
- * TODO: Chip
- * TODO: align the rating
- */
-
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Grid, CardActions, Button } from '@material-ui/core';
@@ -36,22 +24,22 @@ const useStyles = makeStyles((theme) => ({
 
 function MovieDetails() {
   const { imdbID } = useParams();
-  const [isLoading, toggleIsLoading] = useToggle(true);
-  const [movieDetails, setMovieDetails] = useState([]);
-  async function fetchData() {
-    const res = await API.get('/', {
-      params: {
-        i: imdbID,
-      },
-    });
+  const [isLoading, toggleIsLoading] = useToggle(false);
+  const [movieDetails, setMovieDetails] = useState(detailSeeder);
+  // async function fetchData() {
+  //   const res = await API.get('/', {
+  //     params: {
+  //       i: imdbID,
+  //     },
+  //   });
 
-    setMovieDetails(res.data);
-    toggleIsLoading();
-  }
+  //   setMovieDetails(res.data);
+  //   toggleIsLoading();
+  // }
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
   const {
     Title,
@@ -84,7 +72,7 @@ function MovieDetails() {
                 href="https://facebook.com"
                 target="_blank"
                 size="small"
-                color="primary"
+                color="secondary"
                 startIcon={<PlayCircleFilledIcon />}
               >
                 Go To Trailer

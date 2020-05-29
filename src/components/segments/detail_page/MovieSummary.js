@@ -18,9 +18,8 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '400',
     marginLeft: theme.spacing(2),
   },
-  genres: {
-    marginTop: theme.spacing(1),
-    fontWeight: '500',
+  table: {
+    marginTop: theme.spacing(3),
   },
 }));
 
@@ -49,6 +48,7 @@ function MovieSummary({
       <StarRating value={imdbRating} precision={0.2} />
       <Chips runtime={runtime} released={released} genre={genre} />
       <MovieDetailTable
+        className={classes.table}
         genre={genre}
         runtime={runtime}
         rated={rated}

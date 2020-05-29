@@ -1,9 +1,8 @@
 import React from 'react';
-import { Table, TableBody, TableRow, TableContainer } from '@material-ui/core';
+import { TableBody, TableContainer } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import NoBorderCell from '../../NoBorderCell';
+import { CustomCell, CustomRow, CustomTable } from '../../CustomTables';
 
-// TODO: Add Styling
 function MovieDetailTable({
   genre,
   runtime,
@@ -17,46 +16,42 @@ function MovieDetailTable({
 }) {
   return (
     <TableContainer>
-      <Table>
+      <CustomTable>
         <TableBody>
-          <TableRow>
-            <NoBorderCell>Rating</NoBorderCell>
-            <NoBorderCell>{rated}</NoBorderCell>
-          </TableRow>
-          <TableRow>
-            <NoBorderCell>Genre</NoBorderCell>
-            <NoBorderCell>{genre}</NoBorderCell>
-          </TableRow>
-          <TableRow>
-            <NoBorderCell>Directed By</NoBorderCell>
-            <NoBorderCell>{director}</NoBorderCell>
-          </TableRow>
-          <TableRow>
-            <NoBorderCell>Release Date</NoBorderCell>
-            <NoBorderCell>
-              {released}
-              in
-              {country}
-            </NoBorderCell>
-          </TableRow>
-          <TableRow>
-            <NoBorderCell>Runtime</NoBorderCell>
-            <NoBorderCell>{runtime}</NoBorderCell>
-          </TableRow>
-          <TableRow>
-            <NoBorderCell>Language</NoBorderCell>
-            <NoBorderCell>{language}</NoBorderCell>
-          </TableRow>
-          <TableRow>
-            <NoBorderCell>Awards</NoBorderCell>
-            <NoBorderCell>{awards}</NoBorderCell>
-          </TableRow>
-          <TableRow>
-            <NoBorderCell>Written By</NoBorderCell>
-            <NoBorderCell>{writer}</NoBorderCell>
-          </TableRow>
+          <CustomRow>
+            <CustomCell>Rated</CustomCell>
+            <CustomCell>{rated}</CustomCell>
+          </CustomRow>
+          <CustomRow>
+            <CustomCell>Genre</CustomCell>
+            <CustomCell>{genre}</CustomCell>
+          </CustomRow>
+          <CustomRow>
+            <CustomCell>Directed By</CustomCell>
+            <CustomCell>{director}</CustomCell>
+          </CustomRow>
+          <CustomRow>
+            <CustomCell>Release Date</CustomCell>
+            <CustomCell>{`${released} in ${country}`}</CustomCell>
+          </CustomRow>
+          <CustomRow>
+            <CustomCell>Runtime</CustomCell>
+            <CustomCell>{runtime}</CustomCell>
+          </CustomRow>
+          <CustomRow>
+            <CustomCell>Language</CustomCell>
+            <CustomCell>{language}</CustomCell>
+          </CustomRow>
+          <CustomRow>
+            <CustomCell>Awards</CustomCell>
+            <CustomCell>{awards}</CustomCell>
+          </CustomRow>
+          <CustomRow>
+            <CustomCell>Written By</CustomCell>
+            <CustomCell>{writer}</CustomCell>
+          </CustomRow>
         </TableBody>
-      </Table>
+      </CustomTable>
     </TableContainer>
   );
 }

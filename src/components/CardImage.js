@@ -1,9 +1,8 @@
 import React from 'react';
-import { Card, CardMedia, CardActionArea } from '@material-ui/core';
+import { Card, CardMedia, CardActionArea, Chip } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 
-// TODO: reduce the border radius
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,

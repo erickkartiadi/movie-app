@@ -86,6 +86,7 @@ function Navbar(props) {
                 </div>
                 <form onSubmit={handleSubmit}>
                   <InputBase
+                    required
                     inputProps={{ 'aria-label': 'search' }}
                     classes={{
                       root: classes.inputRoot,

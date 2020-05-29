@@ -2,12 +2,11 @@ import React from 'react';
 import { Chip } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
+import BorderChip from './BorderChip';
 
-// TODO: change the variant
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    marginTop: '0.5rem',
     marginBottom: '0.5rem',
     '&>div': {
       marginRight: theme.spacing(1),
@@ -18,9 +17,9 @@ function Chips({ runtime, released, genre }) {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <Chip label={runtime} variant="outlined" />
-      <Chip label={released} variant="outlined" />
-      <Chip label={genre} variant="outlined" />
+      <BorderChip label={runtime} color="secondary" />
+      <BorderChip label={released} color="secondary" />
+      <BorderChip label={genre} color="secondary" />
     </div>
   );
 }

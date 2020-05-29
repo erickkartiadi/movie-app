@@ -14,13 +14,6 @@ import movieSeeders from '../utils/movie_seeders';
 import { scrollTop } from '../utils/scroller';
 import IndexPagination from '../components/IndexPagination';
 
-// TODO: search filter
-// TODO: Add Loading Condition
-// TODO: handle back to index page
-// TODO: search while on movie details
-// TODO: navigate to top button
-// TODO: validation search
-
 function IndexPage() {
   const [movies, setMovies] = useState(movieSeeders);
   const [

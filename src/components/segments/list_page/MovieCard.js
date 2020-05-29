@@ -1,14 +1,3 @@
-/**
- * TODO: Reduce card border radius
- * TODO: Reduce chip border radius
- * TODO: Add rating
- * TODO: Add genre
- * TODO: Add time
- * * Styling
- * TODO: Hover card effect
- * TODO: Trailer, pass down the trailer link to movie detail
- */
-
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Grid, Chip, Divider } from '@material-ui/core';
@@ -16,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import CardImage from '../../CardImage';
 import { scrollTop } from '../../../utils/scroller';
+import BorderChip from '../../BorderChip';
 
 const useStyles = makeStyles((theme) => ({
   chip: {
@@ -52,6 +42,12 @@ function MovieCard(props) {
           {title}
           <span className={classes.year}>{`(${year})`}</span>
         </Typography>
+        <BorderChip
+          className={classes.chip}
+          variant="outlined"
+          color="secondary"
+          label={type}
+        />
       </Grid>
     </Grid>
   );

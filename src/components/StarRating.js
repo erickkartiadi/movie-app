@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1),
     display: 'flex',
     '& h6': {
-      color: 'slateblue',
+      color: theme.palette.secondary.main,
       fontWeight: '500',
       fontSize: '1.2rem',
       marginLeft: theme.spacing(2),

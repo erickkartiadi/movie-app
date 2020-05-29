@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     transformOrigin: '50% 50%',
   },
   ratingText: {
-    fontSize: '5rem',
+    fontSize: '4rem',
     fontFamily: 'Roboto',
   },
 }));
@@ -35,8 +35,8 @@ function CircleRatingSVG({ value, source }) {
       <svg className={classes.theCanvas} viewBox="0 0 500 500">
         <circle
           className={classes.circle}
-          stroke="green"
-          strokeWidth="10"
+          stroke="#388e3c"
+          strokeWidth="20"
           fill="transparent"
           cx="250"
           cy="250"

@@ -17,7 +17,12 @@ function IndexPagination({ handlePageChange, pageNumber }) {
   const classes = useStyles();
   return (
     <Grid className={classes.root} container justify="center">
-      <Pagination count={pageNumber} onChange={handlePageChange} />
+      <Pagination
+        variant="outlined"
+        color="secondary"
+        count={pageNumber}
+        onChange={handlePageChange}
+      />
     </Grid>
   );
 }

@@ -9,10 +9,7 @@ function MovieList(props) {
 
   return (
     <>
-      <h3>
-        Search:
-        {searchText}
-      </h3>
+      <h3>{`Search: ${searchText}`}</h3>
       <Grid container spacing={4}>
         {movies.map((movie) => (
           <MovieCard
@@ -29,9 +26,13 @@ function MovieList(props) {
   );
 }
 
+MovieList.defaultProps = {
+  searchText: '',
+};
+
 MovieList.propTypes = {
   movies: PropTypes.array.isRequired,
-  searchText: PropTypes.string.isRequired,
+  searchText: PropTypes.string,
 };
 
 export default MovieList;
