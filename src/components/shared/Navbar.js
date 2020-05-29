@@ -69,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Navbar(props) {
   const classes = useStyles();
-  const { handleSubmit, searchValue, handleSearchValue } = props;
+  const { handleSubmit, searchInputValue, handleSearchInputValue } = props;
   return (
     <>
       <CssBaseline />
@@ -93,8 +93,8 @@ function Navbar(props) {
                     }}
                     placeholder="Search…"
                     type="text"
-                    value={searchValue}
-                    onChange={handleSearchValue}
+                    value={searchInputValue}
+                    onChange={handleSearchInputValue}
                   />
                 </form>
               </div>
@@ -109,9 +109,9 @@ function Navbar(props) {
 }
 
 Navbar.propTypes = {
-  searchValue: PropTypes.string.isRequired,
+  searchInputValue: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  handleSearchValue: PropTypes.func.isRequired,
+  handleSearchInputValue: PropTypes.func.isRequired,
 };
 
 export default Navbar;

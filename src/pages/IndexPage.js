@@ -6,6 +6,7 @@ import MovieDetails from './MovieDetails';
 import Navbar from '../components/shared/Navbar';
 import Footer from '../components/shared/Footer';
 import LoaderSpinner from '../components/shared/LoaderSpinner';
+import ErrorPage from '../components/shared/ErrorPage';
 import useInput from '../hooks/useInputState';
 import useToggle from '../hooks/useToggleState';
 import API from '../utils/api';
@@ -18,6 +19,7 @@ import IndexPagination from '../components/IndexPagination';
 // TODO: handle back to index page
 // TODO: search while on movie details
 // TODO: navigate to top button
+// TODO: validation search
 
 function IndexPage() {
   const [movies, setMovies] = useState(movieSeeders);
@@ -29,6 +31,8 @@ function IndexPage() {
   const [isLoading, toggleIsLoading] = useToggle(false);
   const [searchText, setSearchText] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
+  const [isError, setError] = useState(false);
+  const [errorText, setErrorText] = useState('');
 
   const handleSearch = async (value, pages) => {
     toggleIsLoading();
@@ -36,11 +40,18 @@ function IndexPage() {
       params: { s: value, page: pages },
     });
     toggleIsLoading();
-    const { totalResults, Search } = res.data;
-    const numberOfPages = Math.ceil(totalResults / 10);
-    setPageNumber(numberOfPages);
-    setMovies(Search);
-    scrollTop();
+    const { Response } = res.data;
+    if (Response === 'True') {
+      const { totalResults, Search } = res.data;
+      const numberOfPages = Math.ceil(totalResults / 10);
+      setPageNumber(numberOfPages);
+      setMovies(Search);
+      scrollTop();
+    } else {
+      const { Error } = res.data;
+      setError(true);
+      setErrorText(Error);
+    }
   };
 
   const handleSubmit = (e) => {
@@ -64,7 +75,7 @@ function IndexPage() {
       <Container>
         {isLoading ? (
           <LoaderSpinner />
-        ) : (
+        ) : !isError ? (
           <>
             <Switch>
               <Route exact path="/">
@@ -76,6 +87,8 @@ function IndexPage() {
               <Route render={() => <h1>404</h1>} />
             </Switch>
           </>
+        ) : (
+          <ErrorPage text={errorText} />
         )}
         <IndexPagination
           pageNumber={pageNumber}
