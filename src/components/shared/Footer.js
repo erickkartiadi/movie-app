@@ -18,6 +18,15 @@ const useStyles = makeStyles((theme) => ({
   appBar: {
     top: 'auto',
     bottom: 0,
+    display: 'flex',
+  },
+  toolbar: {
+    display: 'flex',
+  },
+  github: {
+    textAlign: 'right',
+    textDecoration: 'underline',
+    color: 'white',
   },
 }));
 
@@ -28,10 +37,18 @@ function Footer() {
       <Toolbar />
       <AppBar position="static" className={classes.appBar}>
         <Container>
-          <Toolbar disableGutters>
-            <Typography className={classes.title} variant="h6" noWrap>
-              Footer
+          <Toolbar disableGutters className={classes.toolbar}>
+            <Typography className={classes.title} variant="span" noWrap>
+              &copy; Erick Kartiadi
             </Typography>
+            <a
+              href="https://github.com/erickkartiadi/movie-app"
+              className={classes.github}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Github
+            </a>
           </Toolbar>
         </Container>
       </AppBar>

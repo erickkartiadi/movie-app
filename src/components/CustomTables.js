@@ -1,9 +1,6 @@
 import { withStyles } from '@material-ui/core/styles';
 import { TableCell, TableRow, Table } from '@material-ui/core';
 
-/**
- * TODO: change first child color
- */
 const CustomCell = withStyles({
   root: {
     borderBottom: 'none',
