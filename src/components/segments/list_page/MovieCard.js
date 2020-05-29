@@ -15,6 +15,7 @@ import { Typography, Grid, Chip, Divider } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import CardImage from '../../CardImage';
+import { scrollTop } from '../../../utils/scroller';
 
 const useStyles = makeStyles((theme) => ({
   chip: {
@@ -44,7 +45,7 @@ function MovieCard(props) {
   return (
     <Grid container item xs={3}>
       <Grid item xs={12}>
-        <Link to={`/movies/${imdbId}`}>
+        <Link onClick={scrollTop} to={`/movies/${imdbId}`}>
           <CardImage image={poster} />
         </Link>
         <Typography variant="h6" className={classes.title}>

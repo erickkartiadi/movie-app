@@ -22,6 +22,7 @@ import CardImage from '../components/CardImage';
 import MovieSummary from '../components/segments/detail_page/MovieSummary';
 import RatingScore from '../components/segments/detail_page/RatingScore';
 import CastAvatar from '../components/segments/detail_page/CastAvatar';
+import LoaderSpinner from '../components/shared/LoaderSpinner';
 
 const useStyles = makeStyles((theme) => ({
   trailer: {
@@ -29,29 +30,28 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
   },
   rowHead: {
-    fontFamily: 'Raleway',
+    fontFamily: theme.typography.title,
   },
 }));
 
 function MovieDetails() {
   const { imdbID } = useParams();
-  const [isLoading, toggleIsLoading] = useToggle(false);
-  const [movieDetails, setMovieDetails] = useState(detailSeeder);
-  // async function fetchData() {
-  //   const res = await API.get('/', {
-  //     params: {
-  //       i: imdbID,
-  //     },
-  //   });
+  const [isLoading, toggleIsLoading] = useToggle(true);
+  const [movieDetails, setMovieDetails] = useState([]);
+  async function fetchData() {
+    const res = await API.get('/', {
+      params: {
+        i: imdbID,
+      },
+    });
 
-  //   setMovieDetails(res.data);
-  //   toggleIsLoading();
-  //   console.log(res);
-  // }
+    setMovieDetails(res.data);
+    toggleIsLoading();
+  }
 
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const {
     Title,
@@ -137,7 +137,7 @@ function MovieDetails() {
       </Grid>
     </Grid>
   ) : (
-    <h1>Loading</h1>
+    <LoaderSpinner />
   );
 }
 

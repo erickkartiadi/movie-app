@@ -5,10 +5,12 @@ import MovieList from './MovieList';
 import MovieDetails from './MovieDetails';
 import Navbar from '../components/shared/Navbar';
 import Footer from '../components/shared/Footer';
+import LoaderSpinner from '../components/shared/LoaderSpinner';
 import useInput from '../hooks/useInputState';
 import useToggle from '../hooks/useToggleState';
 import API from '../utils/api';
 import movieSeeders from '../utils/movie_seeders';
+import { scrollTop } from '../utils/scroller';
 import IndexPagination from '../components/IndexPagination';
 
 // TODO: search filter
@@ -19,62 +21,54 @@ import IndexPagination from '../components/IndexPagination';
 
 function IndexPage() {
   const [movies, setMovies] = useState(movieSeeders);
-
-  const [searchValue, handleSearchValue, resetSearchValue] = useInput('');
+  const [
+    searchInputValue,
+    handleSearchInputValue,
+    resetSearchInputValue,
+  ] = useInput('');
   const [isLoading, toggleIsLoading] = useToggle(false);
   const [searchText, setSearchText] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
 
-  const handleSearch = async () => {
+  const handleSearch = async (value, pages) => {
     toggleIsLoading();
     const res = await API.get('/', {
-      params: { s: searchValue, page: 1 },
+      params: { s: value, page: pages },
     });
     toggleIsLoading();
     const { totalResults, Search } = res.data;
     const numberOfPages = Math.ceil(totalResults / 10);
     setPageNumber(numberOfPages);
     setMovies(Search);
+    scrollTop();
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleSearch();
-    setSearchText(searchValue);
-    resetSearchValue();
+    handleSearch(searchInputValue, 1);
+    setSearchText(searchInputValue);
+    resetSearchInputValue();
   };
 
-  const loadMoreMovies = (newMovies) => {
-    setMovies((prev) => [...prev, ...newMovies]);
+  const handlePageChange = (event, value) => {
+    handleSearch(searchText, value);
   };
 
-  const handlePageChange = async (event, value) => {
-    toggleIsLoading();
-    const res = await API.get('/', {
-      params: { s: searchText, page: value },
-    });
-    toggleIsLoading();
-    setMovies(res.data.Search);
-  };
   return (
     <>
       <Navbar
         handleSubmit={handleSubmit}
-        searchValue={searchValue}
-        handleSearchValue={handleSearchValue}
+        searchInputValue={searchInputValue}
+        handleSearchInputValue={handleSearchInputValue}
       />
       <Container>
         {isLoading ? (
-          <h1>Loading</h1>
+          <LoaderSpinner />
         ) : (
           <>
-            <h3>
-              Search:
-              {searchText}
-            </h3>
             <Switch>
               <Route exact path="/">
-                <MovieList movies={movies} loadMoreMovies={loadMoreMovies} />
+                <MovieList searchText={searchText} movies={movies} />
               </Route>
               <Route exact path="/movies/:imdbID">
                 <MovieDetails />

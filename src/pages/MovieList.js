@@ -5,10 +5,14 @@ import MovieCard from '../components/segments/list_page/MovieCard';
 import API from '../utils/api';
 
 function MovieList(props) {
-  const { movies, loadMoreMovies } = props;
+  const { movies, searchText } = props;
 
   return (
     <>
+      <h3>
+        Search:
+        {searchText}
+      </h3>
       <Grid container spacing={4}>
         {movies.map((movie) => (
           <MovieCard
@@ -27,6 +31,7 @@ function MovieList(props) {
 
 MovieList.propTypes = {
   movies: PropTypes.array.isRequired,
+  searchText: PropTypes.string.isRequired,
 };
 
 export default MovieList;
