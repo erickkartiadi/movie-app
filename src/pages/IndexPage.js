@@ -71,7 +71,7 @@ function IndexPage() {
         ) : (
           <>
             <Switch>
-              <Route exact path="/">
+              <Route exact path="/movie-app">
                 <MovieList searchText={searchText} movies={movies} />
               </Route>
               <Route exact path="/err">
