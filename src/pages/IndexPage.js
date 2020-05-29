@@ -51,7 +51,7 @@ function IndexPage() {
     handleSearch(searchInputValue, 1);
     setSearchText(searchInputValue);
     resetSearchInputValue();
-    history.push('/');
+    history.push('/movie-app');
   };
 
   const handlePageChange = (event, value) => {

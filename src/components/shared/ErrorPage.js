@@ -28,7 +28,7 @@ function ErrorPage({ text }) {
   const classes = useStyles();
 
   const goBack = () => {
-    history.push('/');
+    history.push('/movie-app');
   };
   return (
     <div className={classes.root}>
