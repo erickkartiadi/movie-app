@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from 'react';
+import React, { useReducer, useState, useRef } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { Container } from '@material-ui/core';
 import MovieList from './MovieList';
@@ -9,6 +9,7 @@ import useInput from '../hooks/useInputState';
 import useToggle from '../hooks/useToggleState';
 import API from '../utils/api';
 import movieSeeders from '../utils/movie_seeders';
+import IndexPagination from '../components/IndexPagination';
 
 // TODO: search filter
 // TODO: Add Loading Condition
@@ -21,24 +22,39 @@ function IndexPage() {
 
   const [searchValue, handleSearchValue, resetSearchValue] = useInput('');
   const [isLoading, toggleIsLoading] = useToggle(false);
+  const [searchText, setSearchText] = useState(null);
+  const [pageNumber, setPageNumber] = useState(1);
 
   const handleSearch = async () => {
     toggleIsLoading();
     const res = await API.get('/', {
-      params: { s: searchValue },
+      params: { s: searchValue, page: 1 },
     });
     toggleIsLoading();
-    setMovies(res.data.Search);
+    const { totalResults, Search } = res.data;
+    const numberOfPages = Math.ceil(totalResults / 10);
+    setPageNumber(numberOfPages);
+    setMovies(Search);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     handleSearch();
+    setSearchText(searchValue);
     resetSearchValue();
   };
 
   const loadMoreMovies = (newMovies) => {
     setMovies((prev) => [...prev, ...newMovies]);
+  };
+
+  const handlePageChange = async (event, value) => {
+    toggleIsLoading();
+    const res = await API.get('/', {
+      params: { s: searchText, page: value },
+    });
+    toggleIsLoading();
+    setMovies(res.data.Search);
   };
   return (
     <>
@@ -51,16 +67,26 @@ function IndexPage() {
         {isLoading ? (
           <h1>Loading</h1>
         ) : (
-          <Switch>
-            <Route exact path="/">
-              <MovieList movies={movies} loadMoreMovies={loadMoreMovies} />
-            </Route>
-            <Route exact path="/movies/:imdbID">
-              <MovieDetails />
-            </Route>
-            <Route render={() => <h1>404</h1>} />
-          </Switch>
+          <>
+            <h3>
+              Search:
+              {searchText}
+            </h3>
+            <Switch>
+              <Route exact path="/">
+                <MovieList movies={movies} loadMoreMovies={loadMoreMovies} />
+              </Route>
+              <Route exact path="/movies/:imdbID">
+                <MovieDetails />
+              </Route>
+              <Route render={() => <h1>404</h1>} />
+            </Switch>
+          </>
         )}
+        <IndexPagination
+          pageNumber={pageNumber}
+          handlePageChange={handlePageChange}
+        />
       </Container>
       <Footer />
     </>

@@ -1,12 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import PropTypes from 'prop-types';
 import MovieCard from '../components/segments/list_page/MovieCard';
 import API from '../utils/api';
-import useToggle from '../hooks/useToggleState';
 
 function MovieList(props) {
-  const { movies } = props;
+  const { movies, loadMoreMovies } = props;
 
   return (
     <>
@@ -19,7 +18,6 @@ function MovieList(props) {
             imdbId={movie.imdbID}
             type={movie.Type}
             poster={movie.Poster}
-            // handleClick={handleClick}
           />
         ))}
       </Grid>
