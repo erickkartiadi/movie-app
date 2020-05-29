@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
+import { Typography, Button } from '@material-ui/core';
+import { Switch, Route, useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,9 +21,15 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '1.5rem',
   },
 }));
+
 function ErrorPage({ text }) {
+  const history = useHistory();
+
   const classes = useStyles();
 
+  const goBack = () => {
+    history.push('/');
+  };
   return (
     <div className={classes.root}>
       <Typography variant="h1" className={classes.title}>
@@ -31,6 +38,9 @@ function ErrorPage({ text }) {
       <Typography className={classes.text} variant="subtitle1">
         {text}
       </Typography>
+      <Button variant="contained" onClick={goBack}>
+        GO TO HOMEPAGE
+      </Button>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useReducer, useState, useRef } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, useHistory } from 'react-router-dom';
 import { Container } from '@material-ui/core';
 import MovieList from './MovieList';
 import MovieDetails from './MovieDetails';
@@ -33,6 +33,7 @@ function IndexPage() {
   const [pageNumber, setPageNumber] = useState(1);
   const [isError, setError] = useState(false);
   const [errorText, setErrorText] = useState('');
+  const history = useHistory();
 
   const handleSearch = async (value, pages) => {
     toggleIsLoading();
@@ -51,6 +52,7 @@ function IndexPage() {
       const { Error } = res.data;
       setError(true);
       setErrorText(Error);
+      history.push('/err');
     }
   };
 
@@ -75,11 +77,14 @@ function IndexPage() {
       <Container>
         {isLoading ? (
           <LoaderSpinner />
-        ) : !isError ? (
+        ) : (
           <>
             <Switch>
               <Route exact path="/">
                 <MovieList searchText={searchText} movies={movies} />
+              </Route>
+              <Route exact path="/err">
+                <ErrorPage text={errorText} />
               </Route>
               <Route exact path="/movies/:imdbID">
                 <MovieDetails />
@@ -87,8 +92,6 @@ function IndexPage() {
               <Route render={() => <h1>404</h1>} />
             </Switch>
           </>
-        ) : (
-          <ErrorPage text={errorText} />
         )}
         <IndexPagination
           pageNumber={pageNumber}
