@@ -17,7 +17,7 @@ function LoaderSpinner() {
 
   return (
     <div className={classes.root}>
-      <Loader type="Puff" color="#00BFFF" height={100} width={100} />
+      <Loader type="Puff" color="#01579b" height={100} width={100} />
     </div>
   );
 }

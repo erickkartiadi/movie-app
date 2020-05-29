@@ -38,7 +38,7 @@ function Footer() {
       <AppBar position="static" className={classes.appBar}>
         <Container>
           <Toolbar disableGutters className={classes.toolbar}>
-            <Typography className={classes.title} variant="span" noWrap>
+            <Typography className={classes.title} variant="h6" noWrap>
               &copy; Erick Kartiadi
             </Typography>
             <a

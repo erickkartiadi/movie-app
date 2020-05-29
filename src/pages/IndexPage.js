@@ -10,7 +10,6 @@ import ErrorPage from '../components/shared/ErrorPage';
 import useInput from '../hooks/useInputState';
 import useToggle from '../hooks/useToggleState';
 import API from '../utils/api';
-import movieSeeders from '../utils/movie_seeders';
 import { scrollTop } from '../utils/scroller';
 import IndexPagination from '../components/IndexPagination';
 
