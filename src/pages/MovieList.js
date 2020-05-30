@@ -1,6 +1,7 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import PropTypes from 'prop-types';
+import { v4 as uuidv4 } from 'uuid';
 import MovieCard from '../components/segments/list_page/MovieCard';
 import NoMovie from '../components/shared/NoMovie';
 
@@ -13,7 +14,7 @@ function MovieList(props) {
       <Grid container spacing={4}>
         {movies.map((movie) => (
           <MovieCard
-            key={movie.imdbID}
+            key={uuidv4()}
             title={movie.Title}
             year={movie.Year}
             imdbId={movie.imdbID}

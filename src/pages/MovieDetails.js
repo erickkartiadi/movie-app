@@ -1,15 +1,3 @@
-/**
- * TODO: Genres
- * TODO: Navigate to trailer
- * TODO: Score
- * TODO: Cast
- * TODO: Summary
- * TODO: release date
- * TODO: Loading
- * TODO: Chip
- * TODO: align the rating
- */
-
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Grid, CardActions, Button } from '@material-ui/core';

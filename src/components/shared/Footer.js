@@ -45,7 +45,7 @@ function Footer() {
               href="https://github.com/erickkartiadi/movie-app"
               className={classes.github}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
             >
               Github
             </a>
