@@ -78,7 +78,7 @@ function Navbar(props) {
           <Container>
             <Toolbar disableGutters>
               <Typography className={classes.title} variant="h6" noWrap>
-                <Link to="/">The Movie News</Link>
+                <Link to="/movie-app">The Movie News</Link>
               </Typography>
               <div className={classes.search}>
                 <div className={classes.searchIcon}>
